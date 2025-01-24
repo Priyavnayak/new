@@ -1,0 +1,329 @@
+HTML
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Recommendation Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Travel Recommendation</h1>
+        <p>Discover your ideal destination based on your preferences!</p>
+    </header>
+
+    <main>
+        <section id="preferences">
+            <h2>Choose Your Preferences</h2>
+            <label for="destination-type">Destination Type:</label>
+            <select id="destination-type">
+                <option value="beach">Beach</option>
+                <option value="mountain">Mountain</option>
+                <option value="city">City</option>
+                <option value="adventure">Adventure</option>
+            </select>
+
+            <label for="budget">Budget (USD):</label>
+            <input type="number" id="budget" min="100" max="10000" step="100" />
+
+            <button onclick="getRecommendations()">Get Recommendations</button>
+        </section>
+
+        <section id="recommendations">
+            <h2>Your Recommended Destinations</h2>
+            <div id="destination-list"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Travel Recommendation Website</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+CSS
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+main {
+    padding: 20px;
+}
+
+h2 {
+    color: #333;
+}
+
+#preferences {
+    margin-bottom: 20px;
+}
+
+#destination-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.destination-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+}
+
+footer {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+
+JAVASCRIPT
+
+const destinations = [
+    { name: 'Maldives', type: 'beach', cost: 5000, description: 'A tropical paradise with crystal-clear waters and beautiful beaches.' },
+    { name: 'Swiss Alps', type: 'mountain', cost: 4000, description: 'Majestic mountains offering skiing, hiking, and stunning views.' },
+    { name: 'New York City', type: 'city', cost: 2000, description: 'The city that never sleeps. A vibrant destination with endless things to do.' },
+    { name: 'Costa Rica', type: 'adventure', cost: 3000, description: 'Rainforests, volcanoes, and adventure tours await you in Costa Rica.' },
+    { name: 'Santorini', type: 'beach', cost: 3500, description: 'An island paradise known for its dramatic views, white buildings, and sunsets.' },
+    { name: 'Kyoto', type: 'city', cost: 1500, description: 'A city rich in history, offering beautiful temples, gardens, and cultural experiences.' },
+    { name: 'Patagonia', type: 'adventure', cost: 4500, description: 'An adventurer’s dream with rugged landscapes and wildlife.' },
+    { name: 'Banff National Park', type: 'mountain', cost: 2500, description: 'Breathtaking views of mountains, lakes, and wildlife.' }
+];
+
+function getRecommendations() {
+    const type = document.getElementById('destination-type').value;
+    const budget = document.getElementById('budget').value;
+
+    const filteredDestinations = destinations.filter(dest => 
+        dest.type === type && dest.cost <= budget
+    );
+
+    displayRecommendations(filteredDestinations);
+}
+
+function displayRecommendations(destinations) {
+    const listContainer = document.getElementById('destination-list');
+    listContainer.innerHTML = '';
+
+    if (destinations.length === 0) {
+        listContainer.innerHTML = '<p>No destinations match your preferences.</p>';
+    } else {
+        destinations.forEach(dest => {
+            const card = document.createElement('div');
+            card.classList.add('destination-card');
+
+            card.innerHTML = `
+                <h3>${dest.name}</h3>
+                <p>${dest.description}</p>
+                <p><strong>Cost: $${dest.cost}</strong></p>
+            `;
+            listContainer.appendChild(card);
+        });
+    }
+}
+
+
+
+
+
+1. Home Page Introduction (1 point)
+Here’s the HTML for the Home Page's introduction section:
+
+html
+Copy
+Edit
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Travel Recommendation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Travel Recommendation!</h1>
+        <p>Your ultimate guide to finding the perfect destination based on your preferences.</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Discover Your Ideal Destination</h2>
+            <p>Whether you're looking for a relaxing beach vacation, an adventure in the mountains, or a cultural city trip, we help you explore the best travel options for you!</p>
+            <a href="about.html">Learn more about us</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Travel Recommendation Website</p>
+    </footer>
+</body>
+</html>
+
+
+
+
+
+2. About Us Page Elements (2 points)
+The About Us page will provide some details about the website and its mission:
+
+html
+Copy
+Edit
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Travel Recommendation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>About Us</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Our Mission</h2>
+            <p>We aim to help travelers discover the perfect destination based on their unique preferences, ensuring every trip is memorable and enjoyable.</p>
+        </section>
+
+        <section>
+            <h2>How We Work</h2>
+            <p>Our website uses your preferences, including budget and destination type, to recommend personalized travel spots that suit your needs.</p>
+        </section>
+
+        <section>
+            <h2>Our Team</h2>
+            <p>We are a dedicated team of travel experts, developers, and creatives passionate about travel and technology. Together, we work to create the best user experience.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Travel Recommendation Website</p>
+    </footer>
+</body>
+</html>
+
+
+
+3. Contact Us Page Email Form (1 point)
+The Contact Us page will have an email form that allows users to send a message:
+
+html
+Copy
+Edit
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Travel Recommendation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Contact Us</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Send us a message</h2>
+            <form action="submit_form.php" method="POST">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Your Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Travel Recommendation Website</p>
+    </footer>
+</body>
+</html>
+
+
+
+4. Beach Recommendation with Two Images (2 points)
+Here's a section for a beach destination recommendation, featuring two images:
+
+html
+Copy
+Edit
+<section id="beach-recommendation">
+    <h2>Beach Destinations</h2>
+    <div class="destination">
+        <h3>Maldives</h3>
+        <p>Experience the luxury of the Maldives with pristine beaches and crystal-clear waters.</p>
+        <img src="maldives1.jpg" alt="Maldives Beach 1" />
+        <img src="maldives2.jpg" alt="Maldives Beach 2" />
+    </div>
+</section>
+
+
+
+5. Temple Recommendation with Two Images (2 points)
+Here's a section for temple destination recommendations, featuring two images:
+
+html
+Copy
+Edit
+<section id="temple-recommendation">
+    <h2>Temple Destinations</h2>
+    <div class="destination">
+        <h3>Kyoto, Japan</h3>
+        <p>Visit the historic temples of Kyoto, a city steeped in culture and tradition.</p>
+        <img src="kyoto1.jpg" alt="Kyoto Temple 1" />
+        <img src="kyoto2.jpg" alt="Kyoto Temple 2" />
+    </div>
+</section>
+
+
+6. Recommendation Based on Country with Two Images (2 points)
+Here’s an example of recommending destinations based on country:
+
+html
+Copy
+Edit
+<section id="country-recommendation">
+    <h2>Destinations in Italy</h2>
+    <div class="destination">
+        <h3>Rome</h3>
+        <p>Explore the rich history and landmarks of Rome, Italy's capital.</p>
+        <img src="rome1.jpg" alt="Rome Landmark 1" />
+        <img src="rome2.jpg" alt="Rome Landmark 2" />
+    </div>
+</section>
